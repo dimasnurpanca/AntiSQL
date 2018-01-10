@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap library -->
+        <meta charset="utf-8">
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="canvasjs.min.js"></script>
+<style>
+
+.canvasjs-chart-credit {
+   display: none;
+}
+</style>
+<script type="text/javascript">
+  jQuery.ajaxSetup({
+          beforeSend: function() {
+             $('#loader').show();
+
+          },
+          complete: function(){
+
+             $('#loader').hide();
+          },
+          success: function() {}
+        });
+window.onload = function () {
+var dataPoints = [];
+var warna= "asd";
+var nilai = 0;
+$.getJSON("http://rahmat-teknik.com/test-project/api/ip.php", function(data) {  
+
+	$.each(data, function(key, value){
+	
+		warna ="#D50000";
+	
+		dataPoints.push({label: value["timestamp"], asd: value["ip"], y: value["percobaan"], color: warna});
+	});
+	var chart = new CanvasJS.Chart("chartContainer",{
+	backgroundColor: "#293042",
+	  axisX:{
+        labelFontColor: "white"
+      },
+	  axisY: {
+		includeZero: false,
+		suffix: " Terdeteksi",
+		title: "Anti SQL Injection"
+	},
+	toolTip: {
+		content: "Tanggal: {label}<br />Terdeteksi: {y} Gangguan<br />IP Address: {asd}"
+	},
+		data: [{
+			type: "column",
+			dataPoints : dataPoints,
+		}]
+	});
+	chart.render();
+});
+}
+
+</script>
+
+</head>
+<body bgcolor="#293042" style="margin: 0;padding: 0;">
+<div id='loader' align="center"><img src="spinner2.gif"></div>
+<div id="chartContainer" style="height: 240px; width: 100%;"></div>
+</body>
+</html>

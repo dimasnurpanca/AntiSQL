@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0A2D49</color>
+    <color name="white">#FFFFFF</color>
+    <color name="yellow">#CDCD00</color>
+    <color name="yellowDark">#CCCC00</color>
+    <color name="warnaText">#979700</color>
+    <color name="colorPrimaryDark">#1976d2</color>
+    <color name="colorPrimaryLight">#BBDEFB</color>
+    <color name="colorAccent">#03A9F4</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="icons">#FFFFFF</color>
+    <color name="divider">#BDBDBD</color>
+    <color name="red_background">#FFFF4444</color>
+    <color name="green_background">#99cc00</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="warnaDark">#293042</color>
+    <color name="warnaLight">#424556</color>
+    <color name="warnaBiru">#09233C</color>
+</resources>

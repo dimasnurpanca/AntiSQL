@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "879015684103",
+    "firebase_url": "https://antisql-cf1f3.firebaseio.com",
+    "project_id": "antisql-cf1f3",
+    "storage_bucket": "antisql-cf1f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879015684103:android:417850dd2b97f207",
+        "android_client_info": {
+          "package_name": "com.dnp.antisql"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "879015684103-cgmbpe60t5jfh5njvqaqp97pvj6jp21n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIZFJk2eoVR7FGJlFtGgEqMi16SE-qkJU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

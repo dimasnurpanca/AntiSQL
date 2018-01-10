@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@android:color/white"
+    android:radius="100dp"
+    android:shadowColor="#FFFFFF"
+    android:shadowDx="11.0"
+    android:shadowDy="11.0"
+    android:shadowRadius="28"
+    >
+    <item android:state_pressed="false">
+        <shape android:shape="oval">
+            <stroke android:color="@android:color/white" android:width="15dp" />
+            <solid android:color="@android:color/holo_orange_light"/>
+        </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape android:shape="oval">
+            <stroke android:color="@android:color/white" android:width="15dp" />
+    <solid android:color="@android:color/holo_orange_dark"/>
+        </shape>
+    </item>
+</ripple>
