@@ -9,6 +9,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class IPList {
 
+    @SerializedName("id")
+    @Expose
+    public String id;
+
 
     @SerializedName("ip")
     @Expose
@@ -22,13 +26,16 @@ public class IPList {
     public String status;
 
 
-    public IPList(String ip, String date, String status) {
+    public IPList(String id, String ip, String date, String status) {
+        this.id = id;
         this.ip = ip;
         this.date = date;
         this.status = status;
 
     }
-
+    public String getID() {
+        return id;
+    }
     public String getIP() {
         return ip;
     }

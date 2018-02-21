@@ -1,6 +1,9 @@
 package com.dnp.antisql.ui;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -27,12 +30,14 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dnp.antisql.R;
 import com.dnp.antisql.adapter.LogAdapter;
 import com.dnp.antisql.retrofit.APIClient;
 import com.dnp.antisql.retrofit.APIInterface;
 import com.dnp.antisql.retrofit.IPList;
+import com.dnp.antisql.retrofit.IPRespond;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -41,6 +46,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -103,9 +110,36 @@ public class LogActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 IPList dataModel= dataModels.get(position);
-               
-                // Snackbar.make(view, dataModel.getTicker()+"\n"+dataModel.getLastprice()+" API: "+dataModel.getDate(), Snackbar.LENGTH_LONG)
-                //        .setAction("No action", null).show();
+                final String ids = dataModel.getID();
+                final String ips = dataModel.getIP();
+                if(dataModel.getStatus().equals("2")){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LogActivity.this);
+                    builder.setTitle("Aksi");
+                    builder.setMessage("IP "+ips+" Ini Melakukan Percobaan SQL Injection");
+
+                    //Yes Button
+                    builder.setPositiveButton("Blokir", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            aksi(ids);
+                            reload();
+                            //AddStoryActivity.this.onSuperBackPressed();
+                        }
+                    });
+
+                    //No Button
+                    builder.setNegativeButton("Abaikan", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+
+                }
+
             }
         });
 
@@ -126,8 +160,10 @@ loadJSONIP();
 
                 dataModels= new ArrayList<>();
                 for (int i = 0; i < jsonResponse.size(); i++) {
-                    dataModels.add(new IPList(jsonResponse.get(i).getIP(), jsonResponse.get(i).getDate(),jsonResponse.get(i).getStatus()));
-                }
+                    if(!jsonResponse.get(i).getIP().equals("0")){
+                        dataModels.add(new IPList(jsonResponse.get(i).getID(),jsonResponse.get(i).getIP(), jsonResponse.get(i).getDate(),jsonResponse.get(i).getStatus()));
+    }
+                    }
 
 
                 adapter= new LogAdapter(dataModels,getApplicationContext());
@@ -141,6 +177,7 @@ loadJSONIP();
 
             @Override
             public void onFailure(Call<List<IPList>> call, Throwable t) {
+                spinner.setVisibility(View.GONE);
                 call.cancel();
             }
         });
@@ -162,6 +199,54 @@ loadJSONIP();
         //  startActivity(new Intent(NewsActivity.this, FavoriteActivity.class));
         finish();
 
+    }
+
+    private void aksi(String id) {
+
+        final ProgressDialog progressDialog;
+        progressDialog = new ProgressDialog(LogActivity.this);
+        progressDialog.setMessage("Loading");
+        progressDialog.show();
+
+        RequestBody val_id =RequestBody.create(MediaType.parse("multipart/form-data"), id);
+        Call<IPRespond> resultCall = apiInterface.aksi(val_id);
+
+        resultCall.enqueue(new Callback<IPRespond>() {
+            @Override
+            public void onResponse(Call<IPRespond> call, Response<IPRespond> response) {
+
+                progressDialog.dismiss();
+
+                // Response Success or Fail
+
+                if (!response.body().getError()) {
+                    Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_LONG).show();}
+
+
+
+            }
+
+            @Override
+            public void onFailure(Call<IPRespond> call, Throwable t) {
+                progressDialog.dismiss();
+            }
+        });
+    }
+
+    private void reload(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            this.recreate();
+        } else {
+            final Intent intent = this.getIntent();
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            this.finish();
+            this.overridePendingTransition(0, 0);
+            this.startActivity(intent);
+            this.overridePendingTransition(0, 0);
+        }
     }
 
 }

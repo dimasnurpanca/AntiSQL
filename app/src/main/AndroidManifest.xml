@@ -42,6 +42,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.dnp.antisql.ui.HomeActivity" />
         </activity>
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name="com.dnp.antisql.ui.PercobaanActivity"
+            android:parentActivityName="com.dnp.antisql.ui.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dnp.antisql.ui.HomeActivity" />
+        </activity>
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:name="com.dnp.antisql.ui.InformasiActivity"
+            android:parentActivityName="com.dnp.antisql.ui.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.dnp.antisql.ui.HomeActivity" />
+        </activity>
 
 
         <service android:name="com.dnp.antisql.notification.MyFirebaseMessagingService">

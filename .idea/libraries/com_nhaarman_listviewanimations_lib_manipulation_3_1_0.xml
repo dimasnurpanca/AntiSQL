@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.nhaarman.listviewanimations:lib-manipulation-3.1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/dfdd42357c4cedfeef6318a83f7c3f8cacda3abd/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/dfdd42357c4cedfeef6318a83f7c3f8cacda3abd/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.nhaarman.listviewanimations/lib-manipulation/3.1.0/948d1e45318498b5f3087a02a45e500cea632450/lib-manipulation-3.1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

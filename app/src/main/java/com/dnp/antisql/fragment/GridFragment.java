@@ -17,7 +17,9 @@ import com.dnp.antisql.R;
 import com.dnp.antisql.adapter.HomeAdapter;
 import com.dnp.antisql.ui.GrafikActivity;
 import com.dnp.antisql.ui.HomeActivity;
+import com.dnp.antisql.ui.InformasiActivity;
 import com.dnp.antisql.ui.LogActivity;
+import com.dnp.antisql.ui.PercobaanActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,14 +99,12 @@ public class GridFragment extends Fragment {
                startActivityForResult(i2,0);
                 break;
             case 2:
-           //     Intent i3 = new Intent(getActivity().getApplicationContext(), IndicatorActivity.class);
-           //     i3.putExtra("menu","macdplus"); // input text symbol
-          //      startActivityForResult(i3,0);
+             Intent i3 = new Intent(getActivity().getApplicationContext(), PercobaanActivity.class);
+               startActivityForResult(i3,0);
                 break;
             case 3:
-            //    Intent i4 = new Intent(getActivity().getApplicationContext(), IndicatorActivity.class);
-           //     i4.putExtra("menu","macdmin"); // input text symbol
-           //     startActivityForResult(i4,0);
+            Intent i4 = new Intent(getActivity().getApplicationContext(), InformasiActivity.class);
+          startActivityForResult(i4,0);
                 break;
 
 

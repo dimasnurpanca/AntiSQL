@@ -18,7 +18,7 @@ public class APIClient {
 
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://rahmat-teknik.com/test-project/api/")
+                .baseUrl("http://www.hugaf.com/project/antisqlinjection/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

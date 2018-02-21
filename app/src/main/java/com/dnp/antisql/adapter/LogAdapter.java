@@ -106,7 +106,11 @@ public class LogAdapter extends ArrayAdapter<IPList> implements View.OnClickList
 
         if(dataModel.getStatus().equals("1")){
             viewHolder.txtStatus.setText("Diblokir");
-        }else{
+        }
+        else if(dataModel.getStatus().equals("2")){
+            viewHolder.txtStatus.setText("Aksi");
+        }
+        else{
             viewHolder.txtStatus.setText("-");
         }
 
